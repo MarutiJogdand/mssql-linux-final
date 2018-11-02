@@ -1,0 +1,51 @@
+---
+
+
+- name: Create MSSQL Repo files
+  shell: "curl {{item}}"
+  with_items:
+       - "{{mssql_server_repo}}"
+       - "{{mssql_prod_repo}}"
+  async: 60
+  poll: 5
+
+- name: Remove older unixODBC files
+  yum:
+    name:  "{{item}}"     
+    state: absent
+  with_items:
+        - "{{unixODBC}}"
+
+- name: Install MSSQL Server and other required packages
+  yum: 
+    name: "{{item}}"
+    state: present
+  with_items:
+        - "{{mssql_server_packages}}"
+
+- name: Install pymssql module
+  command: pip install pymssql
+
+
+- name: Install MSSQL tools
+  shell: ACCEPT_EULA=Y yum install mssql-tools -y
+
+- name: Check MSSQL Service Status
+  command: systemctl status mssql-server
+  register: mssql_status
+  ignore_errors: yes
+
+- name: Install Setup file if service is not running
+  shell: MSSQL_PID="{{server_type}}" MSSQL_SA_PASSWORD="{{db_pass}}" /opt/mssql/bin/mssql-conf -n setup accept-eula
+  when: '"(running)" not in mssql_status["stdout_lines"][2]'
+
+- name: Add mssql tools to .bashrc
+  lineinfile:
+    dest: "{{ ansible_user_dir}}/.bashrc"
+    state: present
+    line: 'export PATH="$PATH:/opt/mssql-tools/bin"'
+
+
+  
+  
+   

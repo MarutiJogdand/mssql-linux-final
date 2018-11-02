@@ -1,0 +1,9 @@
+---
+# tasks file for patch
+
+- name: Patch download
+  yum:
+    name: '{{mssqlversion}}'
+    state: latest
+
+

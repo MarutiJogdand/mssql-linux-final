@@ -1,0 +1,16 @@
+---
+
+- name: Create Database
+  mssql_db:
+    name: "{{database_name}}"
+    state: present
+    login_host: localhost
+    login_user: SA
+    login_password: "{{db_pass}}"
+
+
+#- name: Import database dump
+#  mssql_db:
+#    name: "{{database_name}}"
+#    state: import
+#    target: /tmp/dump.sql

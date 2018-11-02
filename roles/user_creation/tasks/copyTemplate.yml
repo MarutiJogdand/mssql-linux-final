@@ -1,0 +1,14 @@
+---
+
+- name: Copy SQL Script file
+  template:
+        src: "{{item}}"
+        dest: '/tmp/{{item}}'
+  with_items:
+        - ['create_user.sql','updateUser.sql','dropUser.sql']
+
+- name: Copy Script File
+  template:
+        src: run.sh
+        dest: /tmp/run.sh
+        mode: 0755

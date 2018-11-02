@@ -1,0 +1,11 @@
+---
+
+- name: mssql playbook
+  hosts: mssql
+  become: yes
+  roles:
+        - mssql
+        - user_creation
+        - db_creation
+        - patch
+ 
