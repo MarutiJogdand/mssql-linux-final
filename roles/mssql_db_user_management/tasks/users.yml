@@ -1,0 +1,25 @@
+---
+
+- name: '{{action}} DB User with username {{username}}'
+  shell: /tmp/run.sh
+  register: result
+
+- debug:
+    msg: "User with username: {{username}} is created"
+  when: "'already exists'  not in result['stdout'] and action == 'create'"
+
+- debug:
+    msg: "User with username: {{username}} is updated"
+  when: "'already exists' not in result['stdout'] and action == 'update'"
+
+- debug:
+    msg: "User with username: {{username}} is deleted"
+  when: "'already exists' not in result['stdout'] and 'Cannot drop the login' not in result['stdout'] and action=='delete'"
+
+- debug:
+    msg: "User with username: {{username}} is already exist"
+  when: "'already exists' in result['stdout']"
+
+- debug:
+    msg: "User with username : {{username}} does not exist."
+  when: "'Cannot drop the login' in result['stdout']"

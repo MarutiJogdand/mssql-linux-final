@@ -1,0 +1,7 @@
+---
+
+- name: mssql playbook
+  hosts: mssql
+  become: yes
+  roles:
+        - mssql_db_user_management 

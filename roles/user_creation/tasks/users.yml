@@ -1,9 +1,0 @@
----
-
-- name: '{{action}} DB User with username {{username}}'
-  shell: /tmp/run.sh
-  register: output
-
-- debug:
-    var: output["stdout_lines"]
- 

@@ -8,6 +8,8 @@
        - "{{mssql_prod_repo}}"
   async: 60
   poll: 5
+  args:
+    warn: false
 
 - name: Remove older unixODBC files
   yum:
@@ -45,7 +47,5 @@
     state: present
     line: 'export PATH="$PATH:/opt/mssql-tools/bin"'
 
-
-  
-  
-   
+- debug:
+    msg: "{{mssql_server_packages[1]}} Installation Has Been Completed..."

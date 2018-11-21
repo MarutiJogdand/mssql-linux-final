@@ -1,0 +1,42 @@
+---
+
+- name: Create Database
+  mssql_db:
+    name: "{{database_name}}"
+    state: present
+    login_host: localhost
+    login_user: SA
+    login_password: "{{db_pass}}"
+  register: db_result
+
+- debug:
+    var: db_result
+
+- name: Copy create_table sql file
+  template:
+     src: "{{item}}"
+     dest: "/tmp/{{item}}"
+  with_items: 
+     - ['create_table.sql','run.sh']
+
+- name: Execute shell script
+  shell: /tmp/run.sh
+  register: result
+
+- debug:
+    var: result['stdout']
+
+- name: wait for few seconds
+  wait_for: timeout=5
+
+#- name: Delete template files
+#  file:
+#     path: /tmp/create_table.sql
+#     state: absent
+  
+
+#- name: Import database dump
+#  mssql_db:
+#    name: "{{database_name}}"
+#    state: import
+#    target: /tmp/dump.sql

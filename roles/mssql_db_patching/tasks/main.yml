@@ -5,5 +5,9 @@
   yum:
     name: '{{mssqlversion}}'
     state: latest
+  register: output
+
+- debug:
+    var: output['results']
 
 

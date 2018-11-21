@@ -1,0 +1,9 @@
+---
+
+- name: remove template files 
+  file:
+    path: '/tmp/{{item}}'
+    state: absent
+  with_items:
+     - ['create_user.sql','updateUser.sql','dropUser.sql']
+

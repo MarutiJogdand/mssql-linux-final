@@ -1,0 +1,11 @@
+---
+
+# Database Server Configuratin
+database_name: 'Canopy'
+table_name: 'compose'
+
+# privilege variable
+privilege: "SELECT, INSERT, DELETE, ALTER, EXECUTE, CONTROL"
+
+newPassword: ''
+action: 'create'
