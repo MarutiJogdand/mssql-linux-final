@@ -7,6 +7,4 @@
         - mssql_db_installation
         - mssql_db_configuration
         - mssql_db_user_management
-        - mssql_db_patching
-
- 
+#        - mssql_db_patching 
