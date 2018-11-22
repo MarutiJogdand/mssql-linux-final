@@ -32,6 +32,9 @@
 - name: Install MSSQL tools
   shell: ACCEPT_EULA=Y yum install mssql-tools -y
 
+- name: Wait for few seconds
+  wait_for: timeout=50
+
 - name: Check MSSQL Service Status
   command: systemctl status mssql-server
   register: mssql_status

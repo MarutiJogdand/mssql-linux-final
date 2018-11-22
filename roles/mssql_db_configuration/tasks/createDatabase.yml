@@ -16,6 +16,7 @@
   template:
      src: "{{item}}"
      dest: "/tmp/{{item}}"
+     mode: 0744
   with_items: 
      - ['create_table.sql','run.sh']
 

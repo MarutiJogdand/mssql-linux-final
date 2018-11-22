@@ -7,11 +7,10 @@ mssql_prod_repo:  "https://packages.microsoft.com/config/rhel/7/prod.repo -o /et
 unixODBC: ['unixODBC-utf16', 'unixODBC-utf16-devel']
 
 # All Required mssql server packages
-mssql_server_packages: ['unixODBC-devel','mssql-server-14.0.1*','python-pip','python-devel']
+mssql_server_version: 'mssql-server-14.0.1*'
+mssql_server_packages: ['unixODBC-devel','{{mssql_server_version}}','python-pip','python-devel']
+
 
 # Database Server Configuratin
 server_type: 'Developer'
 
-#Database name
-database_name: 'Canopy'
-db_pass: 'Canopy1!'
