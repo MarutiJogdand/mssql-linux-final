@@ -25,14 +25,14 @@ It can also be used to update and delete user.
 Execution of Playbook:
 
 MSSQL Playbook(main.yml file)
-•name: mssql playbook 
- hosts: mssql 
- become: yes 
- roles:
-	 - linux_mssql_db_installation
-	 - linux_mssql_db_configuration
-	 - linux_mssql_db_user_management
-	 - linux_mssql_db_patching
+	•name: mssql playbook 
+	 hosts: mssql 
+	 become: yes 
+	 roles:
+		 - linux_mssql_db_installation
+		 - linux_mssql_db_configuration
+		 - linux_mssql_db_user_management
+		 - linux_mssql_db_patching
 
 You can perform above functionalities in one go using main.yml:
 	
