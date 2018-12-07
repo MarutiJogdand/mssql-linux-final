@@ -4,4 +4,4 @@
   hosts: mssql
   become: yes
   roles:
-        - linux_mssql_db_user_management 
+        - roles/linux_mssql_db_user_management 

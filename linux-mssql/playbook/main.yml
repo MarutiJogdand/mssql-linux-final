@@ -4,7 +4,7 @@
   hosts: all
   become: yes
   roles:
-        - linux_mssql_db_installation
-        - linux_mssql_db_configuration
-        - linux_mssql_db_user_management
-#        - linux_mssql_db_patching 
+        - roles/linux_mssql_db_installation
+        - roles/linux_mssql_db_configuration
+        - roles/linux_mssql_db_user_management
+#        - roles/linux_mssql_db_patching 

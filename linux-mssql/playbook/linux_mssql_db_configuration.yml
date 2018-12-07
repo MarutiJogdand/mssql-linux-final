@@ -4,5 +4,5 @@
   hosts: mssql
   become: yes
   roles:
-        - linux_mssql_db_configuration
+        - roles/linux_mssql_db_configuration
  
